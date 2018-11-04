@@ -1,25 +1,17 @@
 import * as React from "react";
 import {
-  Container,
   Button,
-  Icon,
   Header,
   Text,
   Left,
   View,
-  Body,
   Right,
 } from "native-base";
-import { Image } from 'react-native';
-import MyText from '../../../shared'
-import styles from "./styles";
+import { Image, StyleSheet, Dimensions } from 'react-native';
 
-export interface Props {
-  navigation: any;
-  list: any;
-}
-export interface State {}
-class Home extends React.Component<Props, State> {
+const { height} = Dimensions.get('window');
+
+class MyHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
@@ -28,13 +20,23 @@ class Home extends React.Component<Props, State> {
     return (
         <Header style={styles.header}>
           <Left>
-            {/* <Button transparent>
-              <Icon
-                active
-                name="ios-add-circle"
-                onPress={() => this.props.navigation.navigate("DrawerOpen")}
-              />
-            </Button> */}
+            <Button transparent
+              onPress={() => this.props.navigation.navigate('Profile')}
+            >
+              <View style={{
+                alignItems: 'center'
+              }}>
+                <Image 
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 20
+                }}
+                  source={require('../../../../assets/profile.png')}
+                />
+                <Text style={styles.greyText}>ออกจากระบบ</Text>
+              </View>
+            </Button>
           </Left>
           <View style={{
             alignItems: 'center'
@@ -48,10 +50,36 @@ class Home extends React.Component<Props, State> {
               เพื่อทุกคน
             </Text>
           </View>
-          <Right />
+          <Right>
+            <Button transparent>
+                <View style={{
+                  alignItems: 'center'
+                }}>
+                  <Image 
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20
+                  }}
+                    source={require('../../../../assets/emergency.png')}
+                  />
+                  <Text style={styles.greyText}>ฉุกเฉิน</Text>
+                </View>
+              </Button>
+          </Right>
         </Header>
     );
   }
 }
-
-export default Home;
+const styles = StyleSheet.create({
+	header: {
+		height: height*0.15,
+		backgroundColor: '#FBFAFA'
+  },
+  greyText: {
+		fontFamily: 'Prompt',
+    fontSize: 12,
+    color: 'grey',
+  }
+})
+export default MyHeader;

@@ -2,8 +2,10 @@
 import React from "react";
 import { createStackNavigator, createBottomTabNavigator, createDrawerNavigator } from "react-navigation";
 import { Root } from "native-base";
-import Login from "./container/LoginContainer";
+import Login from "./stories/screens/Login";
+import LoginForm from './container/LoginContainer'
 import Home from "./container/HomeContainer";
+import Profile from './stories/screens/Profile'
 
 //Drugs Stack
 import Drug from "./stories/screens/Drugs";
@@ -23,6 +25,15 @@ import Hospital from './stories/screens/Hospital'
 import FooterTab from "./stories/screens/FooterTab" 
 import Header from "./stories/screens/Header"
 
+const LoginStack = createStackNavigator(
+	{
+		Login: { screen: Login},
+		LoginForm: { screen: LoginForm },
+	},
+	{
+		headerMode: 'none',
+	}
+)
 const DrugStack = createStackNavigator(
 	{
 		Drug: { screen: Drug },
@@ -56,17 +67,19 @@ const App = createBottomTabNavigator(
 		DrugStack: { screen: DrugStack },
 		DigitalStack: { screen: DigitalStack },
 		Hospital:  { screen: Hospital },
+		Profile: { screen: Profile },
+		LoginStack: { screen: LoginStack},
+
 	},
 	{
 	  tabBarPosition: "bottom",
-	  initialRouteName: "Home",
+	  initialRouteName: "LoginStack",
 	  tabBarComponent: props => (<FooterTab {...props} />),
 	}
   );
 
 export default () => (
 	<Root>
-		<Header />
 		<App />
 	</Root>
 );

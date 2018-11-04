@@ -6,6 +6,7 @@ import {
 } from "native-base";
 import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import Table from './DrugTable'
+import MyHeader from "../Header";
 
 const drugs_allergy = ['1. เพนิซิลลิน', '2. ไดไพโรน', '3. สเตรปโตมัยซิน', '4. โปรเคน', '5. แอมพิซิลลิน']
 const drugInfo_column = ['วันที่จ่ายใบสั่งยา', 'เลขที่ HN ผู้ป่วย', 'เลขที่ใบสั่งยา', 'วันที่สั่งยา', 'ปี ค.ศ.']
@@ -53,6 +54,7 @@ class Drug extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
+        <MyHeader {...this.props} />
         <ScrollView>
           <View style={{ alignItems: 'center'}}>
             <View style={styles.hilightBox}>

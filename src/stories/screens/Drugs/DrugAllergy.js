@@ -4,6 +4,7 @@ import {
   Text,
 } from "native-base";
 import { View, ScrollView, StyleSheet } from 'react-native';
+import MyHeader from "../Header";
 
 const drugInfo_column = ['เลข HN', 'รหัสยาของโรงพยาบาล', 'รหัส TMT Code', 'รหัสกลุ่มยา', 'อาการไม่พึงประสงค์', 'ผลการประเมิน', 'วันที่ประเมิน', 'ผู้ประเมิน', 'สถานพยาบาล']
 const drugInfo_value = ['HN119765', 'DEi1223', 'TMTC333', 'THD', '-', '-', '12/03/2018', 'นพ.องอาจ', 'สถาบันโรคทรวงอก']
@@ -17,6 +18,7 @@ class Drug extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
+        <MyHeader {...this.props} />
         <ScrollView>
             <Text style={styles.headerText}>ยาที่แพ้</Text>
             {

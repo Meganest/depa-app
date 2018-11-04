@@ -3,7 +3,7 @@ import * as React from "react";
 import { Item, Input, Icon, Form, Toast } from "native-base";
 import { observer, inject } from "mobx-react/native";
 
-import Login from "../../stories/screens/Login";
+import LoginForm from "../../stories/screens/Login/loginForm";
 
 export interface Props {
 	navigation: any,
@@ -58,6 +58,6 @@ export default class LoginContainer extends React.Component<Props, State> {
 				</Item>
 			</Form>
 		);
-		return <Login navigation={this.props.navigation} loginForm={Fields} onLogin={() => this.login()} />;
+		return <LoginForm navigation={this.props.navigation} loginForm={Fields} onLogin={() => this.login()} />;
 	}
 }

@@ -5,20 +5,33 @@ import {
 } from "native-base";
 import { View, TouchableOpacity, ScrollView, StyleSheet, Dimensions } from 'react-native'
 import { MapView } from 'expo'
+import markers from './places'
+import MyHeader from "../Header";
 
 const { width} = Dimensions.get('window')
-
 const hospital_list = [
     'รพ.เมตตาประชารักษ์', 'สถาบันโรคทรวงอก', 'สถาบันโรคผิวหนัง', 'สถาบันทันตกรรม', 'สถาบันประสาทวิทยา', 'สถาบันมะเร็งแห่งชาติ'
 ]
 class Hospital extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        markers,
+        region: {
+            latitude: 13.7394689,
+            longitude: 100.2556832,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+    };
   }
+  onChange = (region) => {
+    this.setState({ region });
+  }  
   render() {
     return (
       <Container style={styles.container}>
+        <MyHeader {...this.props} />
         <ScrollView>
             <View style={styles.TopSection}>
                 <View style={styles.hilightBox}>
@@ -32,22 +45,41 @@ class Hospital extends React.Component {
             </View>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap',  padding: 20, alignSelf: 'center' }}>
                 {
-                    hospital_list.map((item, index) => (
-                        <View key={index} style={styles.card}>
-                            <Text style={styles.greyText}>{index+1} {item}</Text>
-                        </View>
+                    this.state.markers.map((item, index) => (
+                        <TouchableOpacity key={index} style={styles.card}
+                            onPress={() => this.onChange(
+                                {
+                                    latitude: item.latitude,
+                                    longitude: item.longitude,
+                                    latitudeDelta: 0.0922,
+                                    longitudeDelta: 0.0421,
+                                }
+                            )}
+                        >
+                            <Text style={styles.greyText}>{index+1} {item.name}</Text>
+                        </TouchableOpacity>
                     ))
                 }
             </View>
             <MapView
-                style={styles.map}
-                initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-                }}
-            />
+                style={{ flex: 1, width: width*0.9, height: 250, alignSelf: 'center' }}
+                region={this.state.region}
+            >
+                {this.state.markers.map((marker, index) => {
+                    const coords = {
+                        latitude: marker.latitude,
+                        longitude: marker.longitude,
+                    };
+                    return (
+                        <MapView.Marker
+                            key={index}
+                            coordinate={coords}
+                            title={marker.name}
+                            description={marker.description}
+                        />
+                    );
+                })}
+            </MapView>
         </ScrollView>
       </Container>
     );

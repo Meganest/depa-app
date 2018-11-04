@@ -4,7 +4,10 @@ import {
   Text,
 } from "native-base";
 import { Image, View, TouchableWithoutFeedback, ScrollView, StyleSheet, Dimensions } from 'react-native'
+import MyHeader from "../Header";
+
 const { width} = Dimensions.get('window');
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +16,7 @@ class Home extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
+		    <MyHeader {...this.props}/>
         <ScrollView>
           <Text style={styles.headerText}>
             แนะนำบริการ dHealth

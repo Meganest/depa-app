@@ -30,6 +30,7 @@ export default function(stores) {
 				Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
 				Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf"),
 				Prompt: require("../../assets/fonts/RSU_Regular.ttf"),
+				PromptBold: require("../../assets/fonts/RSU_BOLD.ttf"),
 			});
 
 			this.setState({ isReady: true });

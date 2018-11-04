@@ -4,6 +4,7 @@ import {
   Text,
 } from "native-base";
 import { Image, View, TouchableOpacity, ScrollView, StyleSheet } from 'react-native'
+import MyHeader from "../Header";
 const data = [
     {
         url: require('../../../../assets/Phamasafe.png'),
@@ -54,6 +55,7 @@ class Digital extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
+        <MyHeader {...this.props} />
         <ScrollView>
             <View style={styles.TopSection}>
                 <View style={styles.hilightBox}>

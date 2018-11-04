@@ -1,5 +1,6 @@
 {
   "expo": {
+    "name": "depa-app",
     "sdkVersion": "24.0.0",
     "slug": "React-Native-Seed",
     "loading": {
@@ -15,6 +16,12 @@
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#334393"
+    },
+    "ios": {
+      "bundleIdentifier": "com.depa.depaapp"
+    },
+    "android": {
+      "package": "com.depa.depaapp"
     }
   }
 }
