@@ -1,4 +1,4 @@
-export default markers = [
+const markers = [
     {
       id: 0,
       name: 'รพ.เมตตาประชารักษ์',
@@ -49,3 +49,4 @@ export default markers = [
       link: 'https://goo.gl/maps/BM2U97Ej8Fw'
     }
   ]
+  export default markers
