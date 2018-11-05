@@ -28,9 +28,11 @@ class Login extends React.Component<Props, State> {
 					<TouchableOpacity style={styles.facebook}>
 						<Image 
 							style={{
-							width: 25,
-							height: 25,
-							margin:10,
+							width: 30,
+							height: 30,
+							marginRight: 15,
+							marginTop: 5,
+							marginBottom: 5,
 							bottom: 2
 							}}
 						source={require('../../../../assets/facebook.png')}
@@ -47,7 +49,7 @@ class Login extends React.Component<Props, State> {
 						หรือ
 					</Text>
 					<View style={{ flexDirection: 'row', width: '80%', alignSelf: 'center', marginTop: 20}}>
-						<CheckBox style={{ borderColor: '#fde869'}} />
+						<CheckBox style={{ borderColor: '#fde869'}} checked={false} />
 						<Text style={{marginLeft: 15, fontSize: 15,color: 'grey', fontFamily: 'Prompt'}}>ยอมรับเงื่อนไข</Text>
 						<TouchableOpacity>
 							<Text style={{marginLeft: 5, fontSize: 15,color: '#fcbb3a', fontFamily: 'Prompt'}}>ดูเงื่อนไข</Text>
@@ -80,7 +82,8 @@ const styles: any = StyleSheet.create({
 		borderRadius: 10,
 		padding:10,
 		flexDirection: 'row',
-		alignItems: 'center'
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	facebookText: {
 		fontSize: 20,

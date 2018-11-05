@@ -5,9 +5,14 @@ import {
 } from "native-base";
 import { View, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import MyHeader from "../Header";
+import { observer, inject } from "mobx-react/native";
+
 const column = ['เลขประตัวประชาชน', 'หมายเลขประจำตัวผู้ป่วย', 'หมายเลย AN', 'รหัสหน่วยบริการ', 'ชื่อ', 'นามสกุล', 'วันเดือนปีเกิด', 'เพศ', 'กรุ๊ปเลือด', 'ที่อยู่ตามทะเบียนราษฎร์', 'โทรศัพท์มือถือ', 'อีเมล']
 const value = ['013-6547-76543-3', 'DS24567', '667880', 'TH', 'รักชาติ', 'สามารถ', '15/06/1982', 'ชาย', 'B', '12/7 กรุงเทพ', '089-1111-111', 'demo@gmail.com']
-class Drug extends React.Component {
+
+@inject("loginForm")
+@observer
+class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
@@ -35,7 +40,12 @@ class Drug extends React.Component {
                             <Text style={styles.text}>รักชาติ สามารถ</Text>
                         </View>
                     </View>
-                    <TouchableOpacity style={styles.circle}>
+                    <TouchableOpacity style={styles.circle}
+                        onPress={() => {
+                            this.props.loginForm.onLogOut()
+                            this.props.navigation.navigate('Home')
+                        }}
+                    >
                         <Text style={styles.greyText}>ออกจากระบบ</Text>
                     </TouchableOpacity>
                 </View>
@@ -44,12 +54,16 @@ class Drug extends React.Component {
                 value.map((item, index) => (
                 <View key={index} style={styles.ContentSection}>
                     <View style={{ flex: 1 }}>
-                        <Text style={styles.text}>
+                        <Text style={{
+                            fontFamily: 'PromptBold',
+                            fontSize: 18,
+                            color: '#001C64'
+                        }}>
                             {column[index]}                       
                         </Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={{fontFamily: 'Prompt', color: 'grey', fontSize:15 }}>
+                        <Text style={{fontFamily: 'Prompt', color: 'grey', fontSize:18 }}>
                             {item}
                         </Text>
                     </View>
@@ -74,7 +88,7 @@ const styles = StyleSheet.create({
     },
     text: {
 		fontFamily: 'Prompt',
-        fontSize: 15,
+        fontSize: 18,
 		color: '#001C64'
     },
     greyText: {
@@ -109,4 +123,4 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     }
 });
-export default Drug;
+export default Profile;

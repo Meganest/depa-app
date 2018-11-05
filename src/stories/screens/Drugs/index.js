@@ -135,8 +135,8 @@ const styles = StyleSheet.create({
     width: "90%",
     backgroundColor: '#f0f5f5',
     borderColor: '#fff',
-    marginTop: 20,
-    padding:10,
+    marginTop: 10,
+    padding:5,
   },
 	headerText: {
 		fontFamily: 'Prompt',

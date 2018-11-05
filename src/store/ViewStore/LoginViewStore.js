@@ -7,6 +7,7 @@ const Login = types
 		emailError: types.optional(types.string, ""),
 		passwordError: types.optional(types.string, ""),
 		isValid: types.optional(types.boolean, false),
+		isLoggedIn: types.optional(types.boolean, false),
 	})
 	.actions(self => {
 		function emailOnChange(id) {
@@ -41,7 +42,13 @@ const Login = types
 			self.password = "";
 			self.passwordError = "";
 		}
-		return { emailOnChange, validateEmail, passwordOnChange, validatePassword, validateForm, clearStore };
+		function onLogIn() {
+			self.isLoggedIn = true;
+		}
+		function onLogOut() {
+			self.isLoggedIn = false;
+		}
+		return { emailOnChange, validateEmail, passwordOnChange, validatePassword, validateForm, clearStore, onLogIn, onLogOut };
 	});
 
 const LoginStore = Login.create({
@@ -50,6 +57,7 @@ const LoginStore = Login.create({
 	emailError: "",
 	passwordError: "",
 	isValid: false,
+	isLoggedIn: false
 });
 
 export default LoginStore;

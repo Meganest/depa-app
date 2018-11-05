@@ -1,31 +1,24 @@
 import * as React from "react";
 import {
-  Button,
   Header,
   Text,
   Left,
-  View,
+  Body,
   Right,
 } from "native-base";
-import { Image, StyleSheet, Dimensions } from 'react-native';
-
-const { height} = Dimensions.get('window');
-
-class MyHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-  render() {
-    return (
-        <Header style={styles.header}>
-          <Left>
-            <Button transparent
-              onPress={() => this.props.navigation.navigate('Profile')}
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
+const LogIn = props => {
+  const { routeName } = props.navigation.state
+  if(routeName === 'Login' || routeName === 'LoginForm' || routeName === 'Home'){
+    return <Text></Text>
+  } else {
+    return <TouchableOpacity style={{
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+              onPress={() => props.navigation.navigate('Profile')}
             >
-              <View style={{
-                alignItems: 'center'
-              }}>
                 <Image 
                 style={{
                   width: 40,
@@ -35,11 +28,26 @@ class MyHeader extends React.Component {
                   source={require('../../../../assets/profile.png')}
                 />
                 <Text style={styles.greyText}>ออกจากระบบ</Text>
-              </View>
-            </Button>
+            </TouchableOpacity>
+  }
+}
+class MyHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+  render() {
+    return (
+      <SafeAreaView>
+        <Header style={styles.header}>
+          <Left style={{
+            flex: 1,
+          }}>
+          {LogIn(this.props)}
           </Left>
-          <View style={{
-            alignItems: 'center'
+          <Body style={{
+            alignItems: "center",
+            flex: 4
           }}>
             <Image
               source={require('../../../../assets/d-health_logo.png')}
@@ -49,31 +57,34 @@ class MyHeader extends React.Component {
               <Text style={{ fontSize: 20,color: '#fcbb3a', fontFamily: 'Prompt' }}>สุขภาพดิจิตอล</Text>
               เพื่อทุกคน
             </Text>
-          </View>
-          <Right>
-            <Button transparent>
-                <View style={{
-                  alignItems: 'center'
-                }}>
-                  <Image 
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20
-                  }}
-                    source={require('../../../../assets/emergency.png')}
-                  />
-                  <Text style={styles.greyText}>ฉุกเฉิน</Text>
-                </View>
-              </Button>
+          </Body>
+          <Right style={{
+            flex: 1,
+          }}>
+            <TouchableOpacity style={{
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image 
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 20
+                }}
+                  source={require('../../../../assets/emergency.png')}
+                />
+                <Text style={styles.greyText}>ฉุกเฉิน</Text>
+            </TouchableOpacity>
           </Right>
         </Header>
+      </SafeAreaView>
     );
   }
 }
 const styles = StyleSheet.create({
 	header: {
-		height: height*0.15,
+		height: 110,
 		backgroundColor: '#FBFAFA'
   },
   greyText: {

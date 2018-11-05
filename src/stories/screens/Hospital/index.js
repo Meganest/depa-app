@@ -62,7 +62,7 @@ class Hospital extends React.Component {
                 }
             </View>
             <MapView
-                style={{ flex: 1, width: width*0.9, height: 250, alignSelf: 'center' }}
+                style={{ flex: 1, width: width*0.9, height: 250, alignSelf: 'center', marginBottom: 10}}
                 region={this.state.region}
             >
                 {this.state.markers.map((marker, index) => {
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#f0f5f5',
         borderColor: '#fff',
-        marginTop: 20,
+        marginTop: 10,
         padding:5,
     },
 	headerText: {

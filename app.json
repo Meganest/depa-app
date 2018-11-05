@@ -22,6 +22,10 @@
     },
     "android": {
       "package": "com.depa.depaapp"
+    },
+    "splash": {
+      "image": "./assets/splash_screen.png",
+      "resizeMode": "contain"
     }
   }
 }

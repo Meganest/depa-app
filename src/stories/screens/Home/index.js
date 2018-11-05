@@ -5,15 +5,20 @@ import {
 } from "native-base";
 import { Image, View, TouchableWithoutFeedback, ScrollView, StyleSheet, Dimensions } from 'react-native'
 import MyHeader from "../Header";
+import { observer, inject } from "mobx-react/native";
 
 const { width} = Dimensions.get('window');
 
+@inject("loginForm")
+@observer
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
+    const { isLoggedIn } = this.props.loginForm
+
     return (
       <Container style={styles.container}>
 		    <MyHeader {...this.props}/>
@@ -26,7 +31,13 @@ class Home extends React.Component {
           </Text>
           <View style={styles.banner}>
             <TouchableWithoutFeedback
-              onPress={() => this.props.navigation.navigate('DrugStack')}
+              onPress={() => {
+                if(isLoggedIn) {
+                  this.props.navigation.navigate('DrugStack')
+                } else {
+                  this.props.navigation.navigate('Login')
+                }    
+              }}
               >
                 <Image
                   style={{
@@ -38,6 +49,15 @@ class Home extends React.Component {
             </TouchableWithoutFeedback>
           </View>
           <View style={styles.sub_banner}>
+            <TouchableWithoutFeedback
+              onPress={() => {
+                if(isLoggedIn) {
+                  this.props.navigation.navigate('HealthStack')
+                } else {
+                  this.props.navigation.navigate('Login')
+                }    
+              }}
+              >
               <Image
                   style={{
                     width: width*0.44,
@@ -45,6 +65,16 @@ class Home extends React.Component {
                 }}
                   source={require('../../../../assets/Left-Banner.png')}
                 />
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback
+              onPress={() => {
+                if(isLoggedIn) {
+                  this.props.navigation.navigate('DigitalStack')
+                } else {
+                  this.props.navigation.navigate('Login')
+                }    
+              }}
+              >
               <Image
               style={{
                 width: width*0.44,
@@ -52,6 +82,7 @@ class Home extends React.Component {
               }}
               source={require('../../../../assets/Right-Banner.png')}
               />
+            </TouchableWithoutFeedback>            
           </View>
           <View style={{width: '90%', alignSelf: 'center'}}>
             <Text style={{ fontSize: 13, color: 'red', fontFamily: 'Prompt' }}>*

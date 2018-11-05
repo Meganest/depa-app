@@ -31,10 +31,17 @@ const data = [
         text: 'คลินิกใกล้บ้าน'
     },
 ]
-const Card = (item, index) => (
+const Card = (item, index, props) => (
     <View key={index} style={styles.card}>
         <TouchableOpacity
-        // onPress={() => this.props.navigation.navigate('DrugStack')}
+        onPress={() => {
+            if(index === 1){
+                props.navigation.navigate('TeleMed')
+            }
+            else if(index === 3){
+                props.navigation.navigate('Wearable')
+            }
+        }}
         >
             <Image
                 style={{
@@ -71,7 +78,7 @@ class Digital extends React.Component {
             <View style={styles.BottomSection}>
                 {
                     data.map((item, index) => (
-                        Card(item, index)
+                        Card(item, index, this.props)
                     ))
                 }
             </View>
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#f0f5f5',
         borderColor: '#fff',
-        marginTop: 20,
+        marginTop: 10,
         padding:5,
     },
 	headerText: {
