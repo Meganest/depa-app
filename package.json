@@ -46,8 +46,11 @@
     "native-base": "2.3.5",
     "react": "16.2.0",
     "react-native": "0.51.0",
+    "react-native-platform-touchable": "^1.1.1",
+    "react-native-snap-carousel": "^3.7.5",
     "react-native-table-component": "^1.1.8",
     "react-navigation": "^2.18.1",
+    "styled-components": "^4.0.3",
     "victory-native": "^30.6.0"
   }
 }
